@@ -1,0 +1,1267 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+An Immersed Finite Element Method to Simulate Nanocomposite with High Volume
+ Fraction
+\end_layout
+
+\begin_layout Abstract
+None
+\end_layout
+
+\begin_layout Section
+Introduction and motivation
+\end_layout
+
+\begin_layout Section
+Immersed Finite Element Method
+\end_layout
+
+\begin_layout Standard
+In this section, we will introduce the theory of the Immersed Finite Element
+ Method presented in this paper.
+ Due to the polymer and CNT meshes are not matched, some assumptions are
+ made in Section.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Basic-assumptions-and"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to deduce the governing equation.
+ Then, in Section.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Properties-of-the"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we prove the governing equation will lead to a linear equation with positive
+ definite coefficient matrix.
+ CG (Conjugate Gradient) iteration is used to solve the governing equation
+ and the algorithm details are presented Section.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Solution-scheme"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Basic assumption and the governing equation
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Basic-assumptions-and"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The polymer and the CNTs are both meshed with 8 node hexahedral elements
+ in the proposed Immersed FE method but they are not matched.
+ So the basic assumption is the polymer and CNTs are fully bonded, namely
+ the displacement of the CNT surface nodes equals to the local polymer displacem
+ent.
+ However in the Immersed FE method, the CNTs' grid are not matched with
+ the polymer grid, so the displacement of the CNT surface nodes should be
+ gathered from the surrounding polymer nodes.
+ It should be mentioned that the fully bonded assumption is also used in
+ many research using standard FE analysis.
+ 
+\end_layout
+
+\begin_layout Standard
+Once the surface displacement of the 
+\begin_inset Formula $i^{\textrm{th}}$
+\end_inset
+
+ CNT, namely 
+\begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{CNT,B}}$
+\end_inset
+
+, is determined, the internal displacement 
+\begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{CNT,I}}$
+\end_inset
+
+ and the reacting force 
+\begin_inset Formula $\boldsymbol{f}_{i}^{\textrm{CNT,react}}$
+\end_inset
+
+ can be obtained by solving the equilibrium equation
+\begin_inset Formula 
+\begin{equation}
+\left[\begin{array}{cc}
+\boldsymbol{K}_{i}^{\textrm{CNT,II}} & \boldsymbol{K}_{i}^{\textrm{CNT,IB}}\\
+\boldsymbol{K}_{i}^{\textrm{CNT,BI}} & \boldsymbol{K}_{i}^{\textrm{CNT,BB}}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{d}_{i}^{\textrm{CNT,I}}\\
+\boldsymbol{d}_{i}^{\textrm{CNT,B}}
+\end{array}\right]=\left[\begin{array}{c}
+\boldsymbol{0}\\
+\boldsymbol{f}_{i}^{\textrm{CNT,react}}
+\end{array}\right]\label{eq:1}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{f}_{i}^{\textrm{CNT,react}}$
+\end_inset
+
+ is the force that the polymer applies on the 
+\begin_inset Formula $\textrm{CNT}_{i}$
+\end_inset
+
+, so the force that 
+\begin_inset Formula $\textrm{CNT}_{i}$
+\end_inset
+
+ applies on polymer is 
+\begin_inset Formula $-\boldsymbol{f}_{i}^{\textrm{CNT,react}}$
+\end_inset
+
+.
+ It should be mentioned that this force are not exactly applied on the polymer
+ nodes, so it should be scattered to the surrounding polymer nodes.
+ Since 
+\begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{CNT,B}}$
+\end_inset
+
+ is calculated is from the polymer displacement 
+\begin_inset Formula $\boldsymbol{d}^{\textrm{Polymer}}$
+\end_inset
+
+, the force that 
+\begin_inset Formula $\textrm{CNT}_{i}$
+\end_inset
+
+ applies on the polymer should also be a function of 
+\begin_inset Formula $\boldsymbol{d}^{\textrm{Polymer}}$
+\end_inset
+
+ and denote it as 
+\begin_inset Formula $\boldsymbol{F}_{i}\left(\boldsymbol{d}^{\textrm{Polymer}}\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Then, the equilibrium equation of polymer is
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{K}^{\textrm{Polymer}}\boldsymbol{d}^{\textrm{Polymer}}=\sum_{i}\boldsymbol{F}_{i}\left(\boldsymbol{d}^{\textrm{Polymer}}\right)+\boldsymbol{f}^{\textrm{Polymer,react}}\label{eq:2}
+\end{equation}
+
+\end_inset
+
+Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is the governing equation of the Immersed FE method and after solving this
+ equation, the whole system can be subsequently determined.
+\end_layout
+
+\begin_layout Subsection
+Properties of the governing equation
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Properties-of-the"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We will prove that Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ leads to a linear equation with positive definite coefficient matrix in
+ the following.
+ 
+\end_layout
+
+\begin_layout Standard
+Suppose the number of freedom degree in the polymer grid is 
+\begin_inset Formula $N^{\textrm{P}}$
+\end_inset
+
+ and the number of the boundary freedom degree in 
+\begin_inset Formula $\textrm{CNT}_{i}$
+\end_inset
+
+ is 
+\begin_inset Formula $N_{i}^{\textrm{B}}$
+\end_inset
+
+.
+ For the 
+\begin_inset Formula $j^{\textrm{th}}$
+\end_inset
+
+ boundary freedom degree in 
+\begin_inset Formula $\textrm{CNT}_{i}$
+\end_inset
+
+, its displacement is gathered from the surrounding polymer nodes, namely
+\begin_inset Formula 
+\begin{equation}
+d_{ij}^{\textrm{CNT,B}}=\sum_{k=1}^{N^{\textrm{P}}}w_{jk}^{\textrm{d},i}d_{k}^{\textrm{Polymer}}\label{eq:3}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula $w_{jk}^{\textrm{d},i}$
+\end_inset
+
+ is the contribution of the 
+\begin_inset Formula $k^{\textrm{th}}$
+\end_inset
+
+ polymer freedom degree to the 
+\begin_inset Formula $j^{\textrm{th}}$
+\end_inset
+
+ boundary freedom degree of 
+\begin_inset Formula $\textrm{CNT}_{i}$
+\end_inset
+
+ in the displacement gathering.
+ Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be rewritten as
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{d}_{i}^{\textrm{CNT,B}}=\boldsymbol{w}_{\textrm{d},i}\boldsymbol{d}^{\textrm{Polymer}}\label{eq:4}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{w}_{\textrm{d},i}$
+\end_inset
+
+ is the displacement gathering matrix with dimension 
+\begin_inset Formula $N_{i}^{\textrm{B}}\times N^{\textrm{P}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The solution of Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is
+\begin_inset Formula 
+\begin{eqnarray}
+\boldsymbol{f}_{i}^{\textrm{CNT,react}} & = & \left(-\boldsymbol{K}_{i}^{\textrm{CNT,BI}}\boldsymbol{K}_{i}^{\textrm{CNT,II}^{-1}}\boldsymbol{K}_{i}^{\textrm{CNT,IB}}+\boldsymbol{K}_{i}^{\textrm{CNT,BB}}\right)\boldsymbol{d}_{i}^{\textrm{CNT,B}}\nonumber \\
+ & = & \boldsymbol{T}_{i}\boldsymbol{d}_{i}^{\textrm{CNT,B}}\label{eq:5}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{T}_{i}$
+\end_inset
+
+ must be a positive definite matrix due the conservation of energy.
+ Therefore, the force that 
+\begin_inset Formula $\textrm{CNT}_{i}$
+\end_inset
+
+ applies on polymer is
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{f}_{i}^{\textrm{C2P}}=-\boldsymbol{T}_{i}\boldsymbol{d}_{i}^{\textrm{CNT,B}}
+\end{equation}
+
+\end_inset
+
+and it should be scattered to the surrounding polymer nodes, namely
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{F}_{i}=\boldsymbol{w}_{\textrm{f},i}\boldsymbol{f}_{i}^{\textrm{C2P}}=-\boldsymbol{w}^{\textrm{f},i}\boldsymbol{T}_{i}\boldsymbol{d}_{i}^{\textrm{CNT,B}}\label{eq:7}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{w}_{\textrm{f},i}$
+\end_inset
+
+ is the force scattering matrix with dimension 
+\begin_inset Formula $N^{\textrm{P}}\times N_{i}^{\textrm{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Substituting Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:4"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ into Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:7"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{F}_{i}=-\boldsymbol{w}_{\textrm{f},i}\boldsymbol{T}_{i}\boldsymbol{w}_{\textrm{d},i}\boldsymbol{d}^{\textrm{Polymer}}\label{eq:8}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this paper, the isoparametric interpolation of the 8 node hexahedral
+ element is used to gather displacement and scatter force.
+ So 
+\begin_inset Formula $\boldsymbol{w}_{\textrm{f},i}=\boldsymbol{w}_{\textrm{d},i}^{\textrm{T}}$
+\end_inset
+
+, and Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:8"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can be rewritten as
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{F}_{i}=-\boldsymbol{w}^{\textrm{T}}\boldsymbol{T}_{i}\boldsymbol{w}\boldsymbol{d}^{\textrm{Polymer}}=\boldsymbol{S}_{i}\boldsymbol{d}^{\textrm{Polymer}}\label{eq:9}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{S}_{i}$
+\end_inset
+
+ is a positive semi-definite matrix.
+\end_layout
+
+\begin_layout Standard
+Finally, Substituting Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:9"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ into Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ leads to
+\begin_inset Formula 
+\begin{equation}
+\left(\boldsymbol{K}^{\textrm{Polymer}}+\sum_{i}\boldsymbol{S}_{i}\right)\boldsymbol{d}^{\textrm{Polymer}}=\left(\boldsymbol{K}+\boldsymbol{S}\right)\boldsymbol{d}^{\textrm{Polymer}}=\boldsymbol{f}^{\textrm{Polymer,react}}\label{eq:10}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{K}+\boldsymbol{S}$
+\end_inset
+
+ is the total stiffness matrix of the nanocomposite which contains the original
+ stiffness from the polymer, namely 
+\begin_inset Formula $\boldsymbol{K}$
+\end_inset
+
+, and the reinforced stiffness from CNTs, namely 
+\begin_inset Formula $\boldsymbol{S}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Strictly speaking, 
+\begin_inset Formula $\boldsymbol{K}$
+\end_inset
+
+ should not be equal to the stiffness matrix of the pure polymer 
+\begin_inset Formula $\boldsymbol{K}_{0}$
+\end_inset
+
+.
+ This is because the CNTs in the composite occupy some space of the polymer
+ and thus, decrease the stiffness of the polymer.
+ Nevertheless, due to the fact that the volume fraction of the nanocomposite
+ is very low ( generally less than 5% ), and the stiffness of CNT is much
+ higher than that of the polymer ( about 300 times ), the magnitude of 
+\begin_inset Formula $\boldsymbol{K}_{0}-\boldsymbol{K}$
+\end_inset
+
+ should be much less than the magnitude of 
+\begin_inset Formula $\boldsymbol{S}$
+\end_inset
+
+.
+ So in this paper, 
+\begin_inset Formula $\boldsymbol{K}_{0}$
+\end_inset
+
+ is used in Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:10"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for the sake of simplicity.
+\end_layout
+
+\begin_layout Standard
+Dividing 
+\begin_inset Formula $\boldsymbol{d}^{\textrm{Polymer}}$
+\end_inset
+
+ into the active freedom degrees and the constraint freedom degrees, Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:10"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ changes to
+\begin_inset Formula 
+\begin{equation}
+\left[\begin{array}{cc}
+\boldsymbol{K}^{\textrm{II}}+\boldsymbol{S}^{\textrm{II}} & \boldsymbol{K}^{\textrm{IB}}+\boldsymbol{S}^{\textrm{IB}}\\
+\boldsymbol{K}^{\textrm{BI}}+\boldsymbol{S}^{\textrm{BI}} & \boldsymbol{K}^{\textrm{BB}}+\boldsymbol{S}^{\textrm{BB}}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{d}^{\textrm{I}}\\
+\boldsymbol{d}^{\textrm{B}}
+\end{array}\right]=\left[\begin{array}{c}
+\boldsymbol{0}\\
+\boldsymbol{f}^{\textrm{react}}
+\end{array}\right]
+\end{equation}
+
+\end_inset
+
+and the Finally equation to be solved is
+\begin_inset Formula 
+\begin{equation}
+\left(\boldsymbol{K}^{\textrm{II}}+\boldsymbol{S}^{\textrm{II}}\right)\boldsymbol{d}^{\textrm{I}}=-\left(\boldsymbol{K}^{\textrm{IB}}+\boldsymbol{S}^{\textrm{IB}}\right)\boldsymbol{d}^{\textrm{B}}\label{eq:12}
+\end{equation}
+
+\end_inset
+
+It should be mentioned that 
+\begin_inset Formula $\boldsymbol{K}^{\textrm{II}}$
+\end_inset
+
+ is a positive definite matrix and 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{II}}$
+\end_inset
+
+ is a positive semi-definite matrix, so the coefficient matrix of Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:12"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is positive definite.
+\end_layout
+
+\begin_layout Subsection
+Solution scheme
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Solution-scheme"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:12"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is a linear equation, it is almost impossible to calculate the coefficient
+ matrix directly because the expression of 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{II}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{IB}}$
+\end_inset
+
+ can be very complicated.
+ However, 
+\begin_inset Formula $\boldsymbol{S}\boldsymbol{d}$
+\end_inset
+
+ can be easily obtained by solving Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for each CNT and summing over all 
+\begin_inset Formula $\boldsymbol{F}_{i}$
+\end_inset
+
+.
+ Therefore, the CG (Conjugate Gradient) iteration can be used to solve Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:12"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The flowchart of the CG iteration is shown in Algorithm.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flowchart-of-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ where 
+\begin_inset Formula $\boldsymbol{K}^{\textrm{II}}\boldsymbol{p}_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{K}^{\textrm{IB}}\boldsymbol{d}^{\textrm{B}}$
+\end_inset
+
+ are known while 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{IB}}\boldsymbol{d}^{\textrm{B}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{II}}\boldsymbol{p}_{n}$
+\end_inset
+
+ are unknown variables.
+ Note that
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{S}\boldsymbol{d}_{0}=\boldsymbol{S}\left[\begin{array}{c}
+\boldsymbol{0}\\
+\boldsymbol{d}^{\textrm{B}}
+\end{array}\right]=\left[\begin{array}{cc}
+\boldsymbol{S}^{\textrm{II}} & \boldsymbol{S}^{\textrm{IB}}\\
+\boldsymbol{S}^{\textrm{BI}} & \boldsymbol{S}^{\textrm{BB}}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{0}\\
+\boldsymbol{d}^{\textrm{B}}
+\end{array}\right]=\left[\begin{array}{c}
+\boldsymbol{S}^{\textrm{IB}}\boldsymbol{d}^{\textrm{B}}\\
+*
+\end{array}\right]
+\end{equation}
+
+\end_inset
+
+so 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{IB}}\boldsymbol{d}^{\textrm{B}}$
+\end_inset
+
+ equals to the components of 
+\begin_inset Formula $\boldsymbol{S}\boldsymbol{d}_{0}$
+\end_inset
+
+ related to the active freedom degree.
+ Similarly, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{S}\boldsymbol{d}_{n}=\boldsymbol{S}\left[\begin{array}{c}
+\boldsymbol{p}_{n}\\
+\boldsymbol{d}^{\textrm{B}}
+\end{array}\right]=\left[\begin{array}{cc}
+\boldsymbol{S}^{\textrm{II}} & \boldsymbol{S}^{\textrm{IB}}\\
+\boldsymbol{S}^{\textrm{BI}} & \boldsymbol{S}^{\textrm{BB}}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{p}_{n}\\
+\boldsymbol{d}^{\textrm{B}}
+\end{array}\right]=\left[\begin{array}{c}
+\boldsymbol{S}^{\textrm{II}}\boldsymbol{p}_{n}+\boldsymbol{S}^{\textrm{IB}}\boldsymbol{d}^{\textrm{B}}\\
+*
+\end{array}\right]
+\end{equation}
+
+\end_inset
+
+so 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{II}}\boldsymbol{p}_{n}$
+\end_inset
+
+ equals to the the components of 
+\begin_inset Formula $\boldsymbol{S}\boldsymbol{d}_{n}$
+\end_inset
+
+ related to the active freedom degree subtracting 
+\begin_inset Formula $\boldsymbol{S}^{\textrm{IB}}\boldsymbol{d}^{\textrm{B}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align left
+\begin_inset Graphics
+	filename CG_iteration.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The flowchart of the CG iteration.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-flowchart-of-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Validation and numerical results
+\end_layout
+
+\begin_layout Standard
+In this section, two numerical tests are presented at first for the validation
+ of the method proposed in this paper, namely to demonstrate that the results
+ from the Immersed FE method are close to the results from the standard
+ FE method.
+ Then we show an implementation of using the Immersed FE method to study
+ the relationship between the effective material properties and the volume
+ fraction of the nanocomposite.
+\end_layout
+
+\begin_layout Subsection
+One CNT validation
+\end_layout
+
+\begin_layout Standard
+In this example, one SWCNT selected to be (5,5) armchair of radius 
+\begin_inset Formula $r=0.67\textrm{nm}$
+\end_inset
+
+ and length 
+\begin_inset Formula $l=10\textrm{nm}$
+\end_inset
+
+ is put into a polymer.
+ The size of polymer is 
+\begin_inset Formula $7\textrm{nm}\times7\textrm{nm}\times35\textrm{nm}$
+\end_inset
+
+ and the CNT is displaced in the center of the polymer as shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-model-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.The material properties of the CNT and polymer are 
+\begin_inset Formula $E^{\textrm{CNT}}=860\textrm{GPa},$
+\end_inset
+
+
+\begin_inset Formula $\nu^{\textrm{CNT}}=0.17$
+\end_inset
+
+ and 
+\begin_inset Formula $E^{\textrm{Polymer}}=3.2\textrm{GPa},$
+\end_inset
+
+
+\begin_inset Formula $\nu^{\textrm{Polymer}}=0.39$
+\end_inset
+
+ from the MD simulation.
+ The boundary condition is 
+\begin_inset Formula $d_{x}=0$
+\end_inset
+
+ at face 
+\begin_inset Formula $x=0$
+\end_inset
+
+, 
+\begin_inset Formula $d_{y}=0$
+\end_inset
+
+ at face 
+\begin_inset Formula $y=0$
+\end_inset
+
+, 
+\begin_inset Formula $d_{z}=0$
+\end_inset
+
+ at face 
+\begin_inset Formula $z=0$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{z}=1.35\textrm{nm}$
+\end_inset
+
+ at face 
+\begin_inset Formula $z=35\textrm{nm}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/Acdamic Research/Weekly Report/181109/one_CNT_model.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The model of the one CNT validation.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-model-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This problem is simulated by both the standard FE method and the Immersed
+ FE method proposed in this paper.
+ The local view of the standard FE model near the CNT is shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mesh-matched-FEM-model"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and the CNT and polymer meshes are matched.
+ The number of cells in the standard FEM model is 168300.
+ In the Immersed FE model, the CNT grid is the same with that in the standard
+ FEM while the polymer is meshed as a regular grid with 
+\begin_inset Formula $30\times30\times150$
+\end_inset
+
+ cells.
+ The number of cells in this two model is close, so they have a similar
+ grid resolution.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename oneCNT_s_FE_model.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mesh-matched FEM model
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mesh-matched-FEM-model"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+ contour of the CNT are compared in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CNT_szz_comparison"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+ distribution in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CNT_szz_comparison"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(a) and (b) are very similar in most place while the stress at the endpoints
+ of the CNT are overestimated.
+ The overestimation may occur if one or more CNT cells at the endpoint are
+ fully inside a polymer cell, and it can be eliminated by using a refined
+ polymer grid or a coarser CNT grid.
+ Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CNT_szz_comparison"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(c) shows the 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+ contour if the polymer is meshed in 
+\begin_inset Formula $100\times100\times500$
+\end_inset
+
+, and the stress overestimation is almost disappeared.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename CNT_szz_comparison.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The comparison of the CNT 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CNT_szz_comparison"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:polymer_szz_comparison_1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents the polymer 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+ comparison near the CNT and boundary and the stress distribution are also
+ very similar in most place.
+ The degree of the stress concentration phenomenon near the CNT's endpoints
+ is underestimated due to the non-matched polymer and CNT grid and it can
+ also be eliminated by using a refined polymer grid.
+ It should be mentioned that the underestimation is localized because the
+ equilibrium equation is a elliptic equation.
+ Therefore, it would not produce obvious error when evaluating the effective
+ material properties of the nanocomposite.
+ Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:polymer_szz_comparison_2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+ contour at the boundary, and the results from the standard and Immersed
+ FE method are almost the same.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename polymer_szz_i_comparison.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The comparison of the polymer 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+ near the CNT.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:polymer_szz_comparison_1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename polymer_szz_b_comparison.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The comparison of the polymer 
+\begin_inset Formula $\sigma_{zz}$
+\end_inset
+
+ near the boundary.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:polymer_szz_comparison_2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion and future work
+\end_layout
+
+\end_body
+\end_document

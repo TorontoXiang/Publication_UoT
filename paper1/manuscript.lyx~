@@ -992,7 +992,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1147,8 +1147,18 @@ noprefix "false"
  comparison near the CNT and boundary and the stress distribution are also
  very similar in most place.
  The degree of the stress concentration phenomenon near the CNT's endpoints
- is underestimated due to the non-matched polymer and CNT grid and it can
- also be eliminated by using a refined polymer grid.
+ is underestimated due to the non-matched polymer and CNT grid, and it can
+ also be eliminated by using a refined polymer grid as shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:polymer_szz_comparison_1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(c).
  It should be mentioned that the underestimation is localized because the
  equilibrium equation is a elliptic equation.
  Therefore, it would not produce obvious error when evaluating the effective
@@ -1175,7 +1185,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1219,7 +1229,7 @@ name "fig:polymer_szz_comparison_1"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1257,6 +1267,201 @@ name "fig:polymer_szz_comparison_2"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+CNT nanocomposite validation
+\end_layout
+
+\begin_layout Standard
+In this example, 11 SWCNTs with 
+\begin_inset Formula $r=0.67\textrm{nm}$
+\end_inset
+
+ are randomly put into the polymer as shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CNT-distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(a).
+ The standard and Immersed FE method are used to calculate the effective
+ material properties.
+ The size of the RVE (Representative Volume Element ) is 
+\begin_inset Formula $l=67\textrm{nm}$
+\end_inset
+
+ and the material properties of CNT and polymer are 
+\begin_inset Formula $E^{\textrm{CNT}}=860\textrm{GPa},$
+\end_inset
+
+
+\begin_inset Formula $\nu^{\textrm{CNT}}=0.17$
+\end_inset
+
+ and 
+\begin_inset Formula $E^{\textrm{Polymer}}=2.9\textrm{GPa},$
+\end_inset
+
+
+\begin_inset Formula $\nu^{\textrm{Polymer}}=0.39$
+\end_inset
+
+, respectively.
+ The grid of the standard FM method is shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CNT-distribution"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(b) while in the Immersed FE method, the polymer grid is meshed as 
+\begin_inset Formula $100\times100\times100$
+\end_inset
+
+ regular cells.
+ The boundary condition is 
+\begin_inset Formula $d_{x}=0$
+\end_inset
+
+ at face 
+\begin_inset Formula $x=0$
+\end_inset
+
+, 
+\begin_inset Formula $d_{y}=0$
+\end_inset
+
+ at face 
+\begin_inset Formula $y=0$
+\end_inset
+
+, 
+\begin_inset Formula $d_{z}=0$
+\end_inset
+
+ at face 
+\begin_inset Formula $z=0$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{x}=3.35\textrm{nm}$
+\end_inset
+
+ at face 
+\begin_inset Formula $x=67\textrm{nm}$
+\end_inset
+
+.
+ Therefore, the effective 
+\begin_inset Formula $E_{11}$
+\end_inset
+
+ are compared.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The CNT distribution (a) and the standard FE grid (b) of the nanocomposite.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-CNT-distribution"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Firstly, the effective 
+\begin_inset Formula $\sigma_{xx}=\frac{f_{x}^{\textrm{react}}}{S}$
+\end_inset
+
+ is compared, where 
+\begin_inset Formula $f_{x}^{\textrm{react}}$
+\end_inset
+
+ is the x-component of the reacting force at face 
+\begin_inset Formula $x=0$
+\end_inset
+
+ and 
+\begin_inset Formula $S$
+\end_inset
+
+ is the face area.
+ 
+\begin_inset Formula $\sigma_{xx}$
+\end_inset
+
+ from the standard FE method is 0.1487GPa while the it is 0.1493Gpa from my
+ the Immersed.
+ The effective stress from the non-mesh-matched method is slightly higher
+ than the standard FE method which may caused by the overestimation of the
+ CNT deformation near the CNT endpoints 
+\end_layout
+
+\begin_layout Standard
+The displacement of each endpoint of the CNTs are also compared.
+ An auxiliary variable is defined to measure the average displacement difference
+ as
+\begin_inset Formula 
+\begin{equation}
+e=\frac{\sum_{i}\left|\boldsymbol{d}_{i}^{\textrm{SFE}}-\boldsymbol{d}_{i}^{\textrm{IFE}}\right|}{\sum_{i}\left|\boldsymbol{d}_{i}^{\textrm{SFE}}\right|}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{SFE}}$
+\end_inset
+
+and 
+\begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{IFE}}$
+\end_inset
+
+ are the displacement of each CNT endpoint from standard FE method and Immersed
+ FE method, respectively.
+ The numerical result shows that the average CNT endpoint displacement differenc
+e is about 
+\begin_inset Formula $5.66\%$
+\end_inset
+
+, and it indicates that the results from the Immersed FE method are very
+ close to the standard FE method.
 \end_layout
 
 \begin_layout Section

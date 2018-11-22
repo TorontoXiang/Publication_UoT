@@ -90,21 +90,20 @@ s of a CNT-reinforced composite on bulk levels.
  phenomena.
  In this study, an Immersed FE method is proposed which allows for the CNT
  and polymer model to be created independently and simulated coupled.
- The basic assumption is the CNT and polymer are fully bonded, so the equilibriu
-m equations of each CNT can be embed into the equilibrium equation of the
+ The basic assumption is the CNT and polymer are fully bonded, and the equilibri
+um equation of each CNT is embedded into the equilibrium equation of the
  polymer according to the Newton's third law.
  The most important advantage of the Immersed FE method is that the polymer
  can always be meshed as a regular grid no matter how complex the CNT nets
  are.
- So it possible to simulate realistic composites because the difficulty
+ So it is possible to simulate realistic composites because the difficulty
  of creating a realistic CNT net model is much less than creating a realistic
  composite model.
  Numerical examples are presented to validate the results of the Immersed
  FE method are very close to the results of the traditional FE method.
  A simple application of the Immersed FE method is also presented which
- study the relationship between the CNT volume fraction and the effective
- material properties.
- 
+ studies the the mechanic properties of composites reinforced by the uniformly
+ dispersed straight CNTs with different volume fraction.
 \end_layout
 
 \begin_layout Section
@@ -119,8 +118,8 @@ s, such as such as low density[xxx], high Young’s modulus, strength and
  These superior properties make it an excellent choice to reinforce pure
  polymer as the multi-functional composite.
  In the past few decades, intensive attentions are paid to understand the
- mechanical behavior of the nanocomposite through experimental, theoretical
- and numerical studies[xxx].
+ mechanical behavior of the nanocomposite through experimental[xxx], analytical[
+xxx] and numerical studies[xxx].
  
 \end_layout
 
@@ -261,45 +260,134 @@ In order to avoid the complicated meshing process, many assumptions are
  made in the past.
  The simplest way is to reduce the number of CNT and the morphological complexit
 y.
+ For instance, Fisher studied the influence of the waviness by FE models
+ which contain only a single nanotube[xxx] and Chen did research about the
+ mechanical response of composites with regular CNT distribution[xxx].
+ The other way is to use the effective composite material properties which
+ are calculated from the Mori–Tanaka model[xxx].
+ The CNT net dose not need to be meshed explicitly in this method, but the
+ details of the CNT deformation are also ignored[xxx].
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+embedded element technique
+\begin_inset Quotes erd
+\end_inset
+
+[xxx] is also an approach to simplify the meshing process.
+ The CNTs are meshed as beam elements and their freedom degrees are embedded
+ into the polymer by modifying the stiffness matrix of each polymer element.
+ Only kinematic relation between CNT and polymer is considered in this method
+ while the more important issue, the interacting forces in between, is not
+ accounted for.
+ Moreover, the usage of beam element also fails to consider the effect of
+ different Poisson's ratio between CNT and polymer.
+ In summary, the simplification of the meshing process also decreases the
+ accuracy of the results, so these methods can only reveal part of the realistic
+ phenomena.
+\end_layout
+
+\begin_layout Standard
+In this study, an Immersed Finite Element method is proposed which not only
+ simplifies the meshing process but also provides results in high accuracy.
+ In this method, the CNT and polymer grids are both meshed into solid elements
+ and they are allowed to be created independently.
+ It means that the polymer can always be meshed as a regular grid no matter
+ how complex the CNT nets are.
+ The CNT net and polymer are simulated coupled according to a basic 
+\begin_inset Quotes eld
+\end_inset
+
+fully bonded
+\begin_inset Quotes erd
+\end_inset
+
+ assumption.
+ Rather than the 
+\begin_inset Quotes eld
+\end_inset
+
+embedded element technique
+\begin_inset Quotes erd
+\end_inset
+
+ which just embed the CNT freedom degree, the equilibrium equation of each
+ CNT is embedded into the equilibrium equation of the polymer according
+ to the Newton's third law.
+ Therefore, both kinematic and mechanic relations between CNT and polymer
+ are considered in the Immersed FE method.
+ The accuracy of the Immersed FE method are validated by comparing the results
+ with the traditional FE method, and numerical examples demonstrate that
+ they are very close to the results of the traditional FE method.
+\end_layout
+
+\begin_layout Standard
+It should be mentioned that the Immersed FE method is not only suitable
+ to simulate the nanotube-reinforced composites, it can also be used to
+ simulate the mechanical behavior of particle-reinforced composites in the
+ same way.
  
+\end_layout
+
+\begin_layout Standard
+The remaining of this paper is organized as follow.
+ In Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Immersed-Finite-Element"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the basic idea, assumption, governing equation and the solution scheme
+ of the Immersed Finite Element are introduced.
+ Subsequently in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Validation-and-numerical"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, two numerical examples are presented to validate the results from the
+ proposed method.
+ Moreover, a simple application of Immersed FE method is also presented
+ which studies the mechanic properties of composites reinforced by the uniformly
+ dispersed straight CNTs with different volume fraction.
+ Finally, the conclusion are drown in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusion-and-future"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and the outlook of the future works are also presented.
 \end_layout
 
 \begin_layout Section
 Immersed Finite Element Method
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Immersed-Finite-Element"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-In this section, we will introduce the theory of the Immersed Finite Element
- Method presented in this paper.
- Due to the polymer and CNT meshes are not matched, some assumptions are
- made in Section.
+The flowchart of the Immersed Finite Element method is shown in Fig.
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Basic-assumptions-and"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- to deduce the governing equation.
- Then, in Section.
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Properties-of-the"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, we prove the governing equation will lead to a linear equation with positive
- definite coefficient matrix.
- CG (Conjugate Gradient) iteration is used to solve the governing equation
- and the algorithm details are presented Section.
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Solution-scheme"
+reference "fig:The-flowchart-of"
 plural "false"
 caps "false"
 noprefix "false"
@@ -307,6 +395,96 @@ noprefix "false"
 \end_inset
 
 .
+ Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flowchart-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(a) is an uniformly dispersed wavy CNT net with 
+\begin_inset Formula $3\%$
+\end_inset
+
+ volume fraction.
+ It is very difficult to create the corresponding composite grid using tradition
+al FE method.
+ But in the Immersed FE method, the polymer grid could just be meshed as
+ an regular grid shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flowchart-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(b).
+ The size of the polymer element depends on the accuracy requirement.
+ Finally, just put the CNT net and polymer grid together as shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flowchart-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(c), the Immersed FE method is able to output results that is very close
+ to the traditional FE method.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The flowchart of the Immersed FE method.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-flowchart-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The most important advantage of the Immersed FE method is that the polymer
+ can always be meshed as a regular grid no matter how complex the CNT nets
+ are.
+ So it is possible to simulate realistic composites because the difficulty
+ of creating a realistic CNT net model is much less than creating a realistic
+ composite model.
+\end_layout
+
+\begin_layout Standard
+The following of this section will introduce the basic idea, assumptions,
+ governing equation and the solution scheme of the Immersed Finite Element.
  
 \end_layout
 
@@ -327,16 +505,19 @@ The polymer and the CNTs are both meshed with 8 node hexahedral elements
  So the basic assumption is the polymer and CNTs are fully bonded, namely
  the displacement of the CNT surface nodes equals to the local polymer displacem
 ent.
- However in the Immersed FE method, the CNTs' grid are not matched with
- the polymer grid, so the displacement of the CNT surface nodes should be
- gathered from the surrounding polymer nodes.
- It should be mentioned that the fully bonded assumption is also used in
- many research using standard FE analysis.
+ This assumption is widely used in continuum model[xxx] although they are
+ not perfectly bonded in reality and may influence to effective material
+ properties[xxx].
+ But it is also reasonable for small deformation where the stress in CNT
+ can fully transferred to the polymer[xxx].
  
 \end_layout
 
 \begin_layout Standard
-Once the surface displacement of the 
+In the Immersed FE method, the CNTs' grid are not matched with the polymer
+ grid, so the displacement of the CNT surface nodes should be gathered from
+ the surrounding polymer nodes.
+ Once the surface displacement of the 
 \begin_inset Formula $i^{\textrm{th}}$
 \end_inset
 
@@ -385,7 +566,7 @@ Once the surface displacement of the
 \begin_inset Formula $-\boldsymbol{f}_{i}^{\textrm{CNT,react}}$
 \end_inset
 
-.
+ according to the Newton's third law.
  It should be mentioned that this force are not exactly applied on the polymer
  nodes, so it should be scattered to the surrounding polymer nodes.
  Since 
@@ -431,8 +612,8 @@ noprefix "false"
 
 \end_inset
 
- is the governing equation of the Immersed FE method and after solving this
- equation, the whole system can be subsequently determined.
+ is the governing equation of the Immersed FE method and the whole system
+ can be determined.by solving this equation.
 \end_layout
 
 \begin_layout Subsection
@@ -717,8 +898,8 @@ Strictly speaking,
  This is because the CNTs in the composite occupy some space of the polymer
  and thus, decrease the stiffness of the polymer.
  Nevertheless, due to the fact that the volume fraction of the nanocomposite
- is very low ( generally less than 5% ), and the stiffness of CNT is much
- higher than that of the polymer ( about 300 times ), the magnitude of 
+ is very low (generally less than 5%), and the stiffness of CNT is much
+ higher than that of the polymer (about 300 times), the magnitude of 
 \begin_inset Formula $\boldsymbol{K}_{0}-\boldsymbol{K}$
 \end_inset
 
@@ -1007,6 +1188,13 @@ name "fig:The-flowchart-of-1"
 
 \begin_layout Section
 Validation and numerical results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Validation-and-numerical"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1108,7 +1296,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename D:/Acdamic Research/Weekly Report/181109/one_CNT_model.eps
+	filename oneCNT_s_FE_model.eps
 
 \end_inset
 
@@ -1547,7 +1735,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1637,11 +1825,24 @@ e is about
 \end_layout
 
 \begin_layout Subsection
-An implementation of the Immersed FE method
+An application of the Immersed FE method
 \end_layout
 
 \begin_layout Section
 Conclusion and future work
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusion-and-future"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this study, we propose an Immersed Finite Element method to simulate
+ the mechanical behavior of CNT-reinforced polymer.
+ The complicated CNT 
 \end_layout
 
 \end_body

@@ -76,16 +76,192 @@
 \begin_body
 
 \begin_layout Title
-An Immersed Finite Element Method to Simulate Nanocomposite with High Volume
- Fraction
+An Immersed Finite Element Method to Simulate the CNT-Reinforced Polymer
+ with Complicated CNT Morphology
 \end_layout
 
 \begin_layout Abstract
-None
+FE method is one of the most useful approaches to study the mechanical propertie
+s of a CNT-reinforced composite on bulk levels.
+ However due to the extreme complexity of the CNT net morphology, it is
+ almost impossible to create a FE model for a realistic composite.
+ Multiple assumptions are made to reduce the difficulties of creating the
+ FE model in the past decades, but they can only reveal part of the realistic
+ phenomena.
+ In this study, an Immersed FE method is proposed which allows for the CNT
+ and polymer model to be created independently and simulated coupled.
+ The basic assumption is the CNT and polymer are fully bonded, so the equilibriu
+m equations of each CNT can be embed into the equilibrium equation of the
+ polymer according to the Newton's third law.
+ The most important advantage of the Immersed FE method is that the polymer
+ can always be meshed as a regular grid no matter how complex the CNT nets
+ are.
+ So it possible to simulate realistic composites because the difficulty
+ of creating a realistic CNT net model is much less than creating a realistic
+ composite model.
+ Numerical examples are presented to validate the results of the Immersed
+ FE method are very close to the results of the traditional FE method.
+ A simple application of the Immersed FE method is also presented which
+ study the relationship between the CNT volume fraction and the effective
+ material properties.
+ 
 \end_layout
 
 \begin_layout Section
 Introduction and motivation
+\end_layout
+
+\begin_layout Standard
+In the area of nanocomposite science, the carbon nanotubes (CNTs) have attracted
+ considerable interest due to their remarkable mechanical and physical propertie
+s, such as such as low density[xxx], high Young’s modulus, strength and
+ fracture strain[xxx] and high thermal and electrical conductivity[xxx].
+ These superior properties make it an excellent choice to reinforce pure
+ polymer as the multi-functional composite.
+ In the past few decades, intensive attentions are paid to understand the
+ mechanical behavior of the nanocomposite through experimental, theoretical
+ and numerical studies[xxx].
+ 
+\end_layout
+
+\begin_layout Standard
+Numerical simulation is widely used in studying the mechanical properties
+ of nanocomposites and a variety of modeling methods are developed for different
+ scale of interest.
+ The Molecular Dynamics (MD) method is designed for the nano-scale simulation.
+ The constitutive relations of the MD method are derived from the inter-atomic
+ potentials, and the motion of each atom in the system is based on the forces
+ applying on it.
+ MD method is able to see the details of every atom, so it can be used to
+ study the complex phenomena in nano-scale, such as the interfacial properties
+ between CNT and polymer[xxx], the effect of the chemical functionalization
+ on carbon atoms[xxx] and the influence of the defect in the CNT[xxx].
+ However, even with the usage of the most advanced supercomputers, only
+ about 
+\begin_inset Formula $10^{9}$
+\end_inset
+
+ atoms, namely about 1000 atoms in each direction, can be simulated[xxx].
+ So it is unrealistic to use MD method in a larger scale.
+\end_layout
+
+\begin_layout Standard
+To enlarge the simulation scale, the traditional continuum model is introduced
+ which assumes the material to be homogeneous and neglects the details of
+ atomic structures.
+ Although the traditional continuum models cannot accurately describe the
+ phenomena in nano-scale, it is able to provide valuable information to
+ study the influences of the micro-scale parameters, such as the CNT curvature[x
+xx], aspect ratio[xxx], and volume fraction[xxx], on the effective material
+ properties of CNT-reinforced composites.
+ 
+\end_layout
+
+\begin_layout Standard
+Finite Element (FE) method is the most commonly used technique to simulate
+ nanocomposites in micro-scale.
+ However due to the extreme complexity of the CNT net morphology, such as
+ waviness[xxx], agglomeration[xxx] and alignment[xxx], it is almost impossible
+ to create a FE model for a realistic composite.
+ The major challenge comes from the meshing process because traditional
+ FE method requires the CNT and polymer grids to be matched to each other.
+ The difficulty increases significantly with the increment of CNT number
+ and morphological complexity.
+ Lusti and Gusev created the traditional FE model of composites with straight
+ CNTs and Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-traditional-FE"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the grid[xxx].
+ It is obvious that the grid should be very difficult to be created and
+ a lot of highly distorted meshes appear in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-traditional-FE"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+(b) which may decrease the accuracy of the results.
+ The volume fraction of CNT is only 
+\begin_inset Formula $0.5\%$
+\end_inset
+
+ but the composite is meshed into 
+\begin_inset Formula $2.6\times10^{7}$
+\end_inset
+
+ elements.
+ Alian and Meguid also used the traditional FE model to study the mechanical-ele
+ctrical behavior of composites reinforced by straight CNTs, but due to the
+ difficulties in meshing, the CNT volume fraction is only 
+\begin_inset Formula $0.3\%$
+\end_inset
+
+ in their research[xxx].
+ The problem can be even more severe when consider the waviness and agglomeratio
+n of the realistic composites.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename standard_FE_grid.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The traditional FE model of a composite with straight CNT.
+ (b) is the magnification of the red framed section shown in (a).
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-traditional-FE"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to avoid the complicated meshing process, many assumptions are
+ made in the past.
+ The simplest way is to reduce the number of CNT and the morphological complexit
+y.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1269,7 +1445,7 @@ name "fig:polymer_szz_comparison_2"
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 CNT nanocomposite validation
 \end_layout
 
@@ -1374,10 +1550,6 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1462,6 +1634,10 @@ e is about
 
 , and it indicates that the results from the Immersed FE method are very
  close to the standard FE method.
+\end_layout
+
+\begin_layout Subsection
+An implementation of the Immersed FE method
 \end_layout
 
 \begin_layout Section

@@ -1,0 +1,326 @@
+% Encoding: UTF-8
+
+@Article{CNT01,
+  author  = {Gao GH and Cagin T and Goddard WA},
+  title   = {Energetics, structure, mechanical and vibrational properties of single-walled carbon nanotubes},
+  journal = {Nanotechnology},
+  year    = {1998},
+  volume  = {9},
+  pages   = {184-191},
+}
+
+@Article{CNT02,
+  author  = {Treacy MMJ and Ebbesen TW and Gibson JM},
+  title   = {Exceptionally high Young's modulus observed for individual carbon nanotubes},
+  journal = {Nature},
+  year    = {1996},
+  volume  = {381},
+  pages   = {678-680},
+}
+
+@Article{CNT03,
+  author  = {Krishnan A and Dujardin E and Ebbesen EW and Yianilos PN and Treacy MMJ},
+  title   = {Young's modulus of single-walled nanotubes},
+  journal = {Physical Review B},
+  year    = {1998},
+  volume  = {58},
+  pages   = {14013-14019},
+}
+
+@Article{CNT04,
+  author  = {Yakobson BI and Brabec CJ and Bernholc J},
+  title   = {Nanomechanics of carbon tubes: instabilities beyond linear response},
+  journal = {Physical Review Letters},
+  year    = {1996},
+  volume  = {76},
+  pages   = {2511-2514},
+}
+
+@Article{CNT05,
+  author  = {Wong EW and Sheehan PE and Lieber CM},
+  title   = {Nanobeam mechanics: elasticity, strength, and toughness of nanorods and nanotubes},
+  journal = {Science},
+  year    = {1997},
+  volume  = {277},
+  pages   = {1971-1975},
+}
+
+@Article{CNT06,
+  author  = {Hone J and Whitney C and Piskoti C and Zettl A},
+  title   = {Thermal conductivity of single-walled carbon nanotubes},
+  journal = {Physical Review B},
+  year    = {1999},
+  volume  = {59},
+  pages   = {2514-2516},
+}
+
+@Article{CNT07,
+  author  = {Tans SJ and Devoret MH and Dai H and Thess A and Smalley RE and Geerligs LJ and Dekker C},
+  title   = {Individual Single-Wall Carbon Nanotubes as Quantum Wires},
+  journal = {Nature},
+  year    = {1997},
+  volume  = {386},
+  pages   = {474-477},
+}
+
+@Article{CNT08,
+  author  = {Odom TW and Huang JL and Kim P and Lieber CM},
+  title   = {Atomic Structure and Electronic Properties of Single-Walled Carbon Nanotubes},
+  journal = {Nature},
+  year    = {1998},
+  volume  = {391},
+  pages   = {62-64},
+}
+
+@Article{SIMU01,
+  author  = {Chowdhury SC and Okabe T},
+  title   = {Computer simulation of carbon nanotube pull-out from polymer by the molecular dynamics method},
+  journal = {Composites},
+  year    = {2007},
+  volume  = {38},
+  pages   = {747-754},
+}
+
+@Article{SIMU02,
+  author  = {Frankland SJV and Harik VM and Odegard GM and Brenner DW and Gates TS},
+  title   = {The Stress-Strain Behavior of Polymer-Nanotube Composites From Molecular Dynamics Simulation},
+  journal = {Composites Science and Technology},
+  year    = {2003},
+  volume  = {63},
+  pages   = {1655-1661},
+}
+
+@Article{SIMU03,
+  author  = {Griebel M and Hamaekers J},
+  title   = {Molecular Dynamics Simulations of the Elastic Moduli of Polymer-Carbon Nanotube Composites},
+  journal = {Computer Methods in Applied Mechanics and Engineering},
+  year    = {2004},
+  volume  = {193},
+  pages   = {1773-1788},
+}
+
+@Article{EXP01,
+  author  = {Liu TX and Phang IY and Shen L and Chow SY and Zhang WD},
+  title   = {Morphology and Mechanical Properties of Multiwalled Carbon Nanotubes Reinforced Nylon-6 Composites},
+  journal = {Macromolecules},
+  year    = {2004},
+  volume  = {37},
+  pages   = {7214-7222},
+}
+
+@Article{EXP02,
+  author  = {Lachman N and Wagner HD},
+  title   = {Correlation Between Interfacial Molecular Structure and Mechanics in CNT/Epoxy Nano-Composites},
+  journal = {Composites, Part A},
+  year    = {2009},
+  volume  = {41},
+  pages   = {1093-1098},
+}
+
+@Article{EXP03,
+  author  = {Ganguli S and Bhuyan M and Allie L and Aglan H},
+  title   = {Effect of a Multi-Walled Carbon Nanotube Reinforcement on the Fracture Behaviour of a Tetrafunctional Epoxy},
+  journal = {Journal of Materials Science},
+  year    = {2005},
+  volume  = {40},
+  pages   = {3593-3595},
+}
+
+@Article{ANAL01,
+  author  = {Shao LH and Luo RY and Bai SL and Wang J},
+  title   = {Prediction of effective moduli of carbon nanotube–reinforced composites with waviness and debonding},
+  journal = {Composite Structures},
+  year    = {2009},
+  volume  = {87},
+  pages   = {274-281},
+}
+
+@Article{ANAL02,
+  author  = {Dastgerdi JN and Marquis G and Salimi M},
+  title   = {Micromechanical modeling of nanocomposites considering debonding and waviness of reinforcements},
+  journal = {Composite Structures},
+  year    = {2014},
+  volume  = {110},
+  pages   = {1-6},
+}
+
+@Article{ANAL03,
+  author  = {Thostenson TT and Chou TW},
+  title   = {On the elastic properties of carbon nanotubebased composites: modelling and characterization},
+  journal = {Journal of Physics D: Applied Physics},
+  year    = {2014},
+  volume  = {47},
+  pages   = {573-582},
+}
+
+@Article{MD01,
+  author  = {Alian AR and Meguid SA},
+  title   = {Interfacial and mechanical properties of epoxy nanocomposites using different multiscale modeling schemes},
+  journal = {Composite Structure},
+  year    = {2015},
+  volume  = {131},
+  pages   = {545-555},
+}
+
+@Article{SIMU04,
+  author  = {Alian AR and Meguid SA},
+  title   = {Large-scale atomistic simulations of CNT-reinforced thermoplastic polymers},
+  journal = {Composite Structures},
+  year    = {2018},
+  volume  = {191},
+  pages   = {221-230},
+}
+
+@Article{MD02,
+  author  = {Xiao T and Liao K},
+  title   = {A Nonlinear Pullout Model for Unidirectional Carbon Nanotube-Reinforced Composites},
+  journal = {Composites, Part B},
+  year    = {2004},
+  volume  = {35},
+  pages   = {211-217},
+}
+
+@Article{MD03,
+  author  = {Chen H and Xue Q and Zheng Q and Xie J and Yan K},
+  title   = {Influence of Nanotube Chirality, Temperature, and Chemical Modification on the Interfacial Bonding Between Carbon Nanotubes and Polyphenylacetylene},
+  journal = {The Journal of Physical Chemistry C},
+  year    = {2008},
+  volume  = {112},
+  pages   = {16514-16520},
+}
+
+@Article{MD04,
+  author  = {Lordi V and Yao N},
+  title   = {Molecular Mechanics of Binding in Carbon-Nanotube-Polymer Composites},
+  journal = {Journal of Materials Research},
+  year    = {2000},
+  volume  = {15},
+  pages   = {2770-2779},
+}
+
+@Article{MD05,
+  author  = {Frankland SJV and Caglar A and Brenner DW and Griebel M},
+  title   = {Molecular Simulation of the Influence of Chemical Cross-Links on the Shear Strength of Carbon Nanotube-Polymer Interfaces},
+  journal = {The Journal of Physical Chemistry B},
+  year    = {2002},
+  volume  = {106},
+  pages   = {3046-3048},
+}
+
+@Article{MD06,
+  author  = {Shi DL and Feng XQ and Jiang H and Huang YY and Hwang KC},
+  title   = {Multiscale Analysis of Fracture of Carbon Nanotubes Embedded in Composites},
+  journal = {International Journal of Fracture},
+  year    = {2005},
+  volume  = {134},
+  pages   = {369-386},
+}
+
+@Article{MD07,
+  author  = {Chowdhury SC and Okabe T},
+  title   = {Computer simulation of carbon nanotube pull-out from polymer by the molecular dynamics method},
+  journal = {Composites, Part A},
+  year    = {2007},
+  volume  = {38},
+  pages   = {747-754},
+}
+
+@Article{MD08,
+  author  = {Farid F and Abraham and Robert W and Gao HJ and Duchaineau M and Tomas D and Seager M},
+  title   = {Simulating materials failure by using up to one billion atoms and the world’s fastest computer: Work-hardening},
+  journal = {Proceedings of the National Academy of Sciences},
+  year    = {2002},
+  volume  = {99},
+  pages   = {5783--5787},
+}
+
+@Article{FE01,
+  author  = {Fisher FT amd Bradshaw RD and Brinson LC},
+  title   = {Fiber waviness in nanotube-reinforced polymer composites I: Modulus predictions using effective nanotube properties},
+  journal = {Composites Science and Technology},
+  year    = {2003},
+  volume  = {63},
+  pages   = {1689-1703},
+}
+
+@Article{FE02,
+  author  = {Fisher FT amd Bradshaw RD and Brinson LC},
+  title   = {Effects of Nanotube Waviness on the Modulus of Nanotube-Reinforced Polymers},
+  journal = {Applied Physics Letters},
+  year    = {2002},
+  volume  = {80},
+  pages   = {4647-4649},
+}
+
+@Article{FE03,
+  author  = {Dimitrios S and George S and Vissarion P and Manolis P},
+  title   = {Effect of waviness and orientation of carbon nanotubes on random apparent material properties and RVE size of CNT reinforced composites},
+  journal = {Composite Structures},
+  year    = {2016},
+  volume  = {152},
+  pages   = {870-882},
+}
+
+@Article{FE04,
+  author  = {Lusti HR and Gusev AA},
+  title   = {Finite Element Predictions for the Thermoelastic Properties of Nanotube Reinforced Polymers},
+  journal = {Modelling and Simulation in Materials Science and Engineering},
+  year    = {2004},
+  volume  = {12},
+  pages   = {S107-S119},
+}
+
+@Article{FE05,
+  author  = {Alian AR and Meguid SA},
+  title   = {Multiscale modeling of the coupled electromechanical behavior of multifunctional nanocomposites},
+  journal = {Composite Structure},
+  year    = {2019},
+  volume  = {208},
+  pages   = {826-835},
+}
+
+@Article{FE06,
+  author  = {Chen XL and Liu YJ},
+  title   = {Square Representative Volume Elements for Evaluating the Effective Material Properties of Carbon Nanotube-Based Composites},
+  journal = {Computational Materials Science},
+  year    = {2004},
+  volume  = {29},
+  pages   = {1-11},
+}
+
+@Article{FE07,
+  author  = {Roham R},
+  title   = {Influence of carbon nanotube waviness on the stiffness reduction of CNT/polymer composites},
+  journal = {Composite Structures},
+  year    = {2013},
+  volume  = {97},
+  pages   = {304-309},
+}
+
+@Article{MT,
+  author  = {Mori T and Tanaka K},
+  title   = {Average Stress in Matrix and Average Elastic Energy of Materials With Misfitting Inclusions},
+  journal = {Acta Metallurgica},
+  year    = {1973},
+  volume  = {21},
+  pages   = {571-574},
+}
+
+@Article{OTHER01,
+  author  = {Majid K and Abbas M and Rahmatollah G},
+  title   = {On the elasto-plastic behavior of CNT-polymer nanocomposites},
+  journal = {Composite Structures},
+  year    = {2017},
+  volume  = {160},
+  pages   = {782-791},
+}
+
+@Book{OTHER02,
+  title     = {Microstructural Design of Fiber Composites},
+  publisher = {Cambridge University Press},
+  year      = {1992},
+  author    = {Chou TW},
+  editor    = {Cambridge},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

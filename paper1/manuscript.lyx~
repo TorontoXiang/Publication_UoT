@@ -4,7 +4,8 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass article
+\textclass elsarticle
+\options sort&compress, super, square
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -22,16 +23,29 @@
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \use_microtype false
-\use_dash_ligatures true
+\use_dash_ligatures false
 \graphics default
 \default_output_format default
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement tbph
 \paperfontsize default
-\use_hyperref false
+\spacing single
+\use_hyperref true
+\pdf_title "A predict Newton method"
+\pdf_author "X Chen & X Zhang"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -42,8 +56,9 @@
 \use_package stackrel 1
 \use_package stmaryrd 1
 \use_package undertilde 1
-\cite_engine basic
+\cite_engine natbib
 \cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -55,6 +70,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -75,9 +94,96 @@
 
 \begin_body
 
+\begin_layout BeginFrontmatter
+
+\end_layout
+
 \begin_layout Title
 An Immersed Finite Element Method to Simulate the CNT-Reinforced Polymer
  with Complicated CNT Morphology
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+UoT
+\end_layout
+
+\end_inset
+
+X.
+ Chen
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+UoT
+\end_layout
+
+\end_inset
+
+AR.
+ Alian
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+UoT
+\end_layout
+
+\end_inset
+
+SA.
+ Meguid
+\begin_inset Flex CorAuthormark
+status collapsed
+
+\begin_layout Plain Layout
+cor1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Email
+meguid@mie.utoronto.ca
+\end_layout
+
+\begin_layout Corresponding author
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+cor1
+\end_layout
+
+\end_inset
+
+Corresponding author
+\end_layout
+
+\begin_layout Address
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+thu
+\end_layout
+
+\end_inset
+
+Department of Mechanical & Industrial Engineering, University of Toronto,
+ Toronto, Canada 
 \end_layout
 
 \begin_layout Abstract
@@ -106,6 +212,15 @@ um equation of each CNT is embedded into the equilibrium equation of the
  dispersed straight CNTs with different volume fraction.
 \end_layout
 
+\begin_layout Keywords
+Nanocomposites, Immersed Finite Element method, Carbon nanotube morphology,
+ Elastic properties
+\end_layout
+
+\begin_layout EndFrontmatter
+
+\end_layout
+
 \begin_layout Section
 Introduction and motivation
 \end_layout
@@ -113,13 +228,59 @@ Introduction and motivation
 \begin_layout Standard
 In the area of nanocomposite science, the carbon nanotubes (CNTs) have attracted
  considerable interest due to their remarkable mechanical and physical propertie
-s, such as such as low density[xxx], high Young’s modulus, strength and
- fracture strain[xxx] and high thermal and electrical conductivity[xxx].
+s, such as such as low density
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CNT01"
+literal "false"
+
+\end_inset
+
+, high Young’s modulus, strength and fracture strain
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CNT02,CNT03,CNT04,CNT05"
+literal "false"
+
+\end_inset
+
+ and high thermal and electrical conductivity
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CNT06,CNT07,CNT08"
+literal "false"
+
+\end_inset
+
+.
  These superior properties make it an excellent choice to reinforce pure
  polymer as the multi-functional composite.
  In the past few decades, intensive attentions are paid to understand the
- mechanical behavior of the nanocomposite through experimental[xxx], analytical[
-xxx] and numerical studies[xxx].
+ mechanical behavior of the nanocomposite through experimental
+\begin_inset CommandInset citation
+LatexCommand cite
+key "EXP01,EXP02,EXP03"
+literal "false"
+
+\end_inset
+
+, analytical
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ANAL01,ANAL02,ANAL03"
+literal "false"
+
+\end_inset
+
+ and numerical studies
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SIMU01,SIMU02,SIMU03,SIMU04"
+literal "false"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -133,14 +294,45 @@ Numerical simulation is widely used in studying the mechanical properties
  applying on it.
  MD method is able to see the details of every atom, so it can be used to
  study the complex phenomena in nano-scale, such as the interfacial properties
- between CNT and polymer[xxx], the effect of the chemical functionalization
- on carbon atoms[xxx] and the influence of the defect in the CNT[xxx].
+ between CNT and polymer
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MD01,MD02,MD03"
+literal "false"
+
+\end_inset
+
+, the effect of the chemical functionalization on carbon atoms
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MD04,MD05"
+literal "false"
+
+\end_inset
+
+ and the influence of the defect in the CNT
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MD06,MD07"
+literal "false"
+
+\end_inset
+
+.
  However, even with the usage of the most advanced supercomputers, only
  about 
 \begin_inset Formula $10^{9}$
 \end_inset
 
- atoms, namely about 1000 atoms in each direction, can be simulated[xxx].
+ atoms, namely about 1000 atoms in each direction, can be simulated
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MD08"
+literal "false"
+
+\end_inset
+
+.
  So it is unrealistic to use MD method in a larger scale.
 \end_layout
 
@@ -150,9 +342,23 @@ To enlarge the simulation scale, the traditional continuum model is introduced
  atomic structures.
  Although the traditional continuum models cannot accurately describe the
  phenomena in nano-scale, it is able to provide valuable information to
- study the influences of the micro-scale parameters, such as the CNT curvature[x
-xx], aspect ratio[xxx], and volume fraction[xxx], on the effective material
- properties of CNT-reinforced composites.
+ study the influences of the micro-scale parameters, such as the CNT curvature
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE01,FE02,FE03"
+literal "false"
+
+\end_inset
+
+, aspect ratio and volume fraction
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE04"
+literal "false"
+
+\end_inset
+
+, on the effective material properties of CNT-reinforced composites.
  
 \end_layout
 
@@ -160,14 +366,22 @@ xx], aspect ratio[xxx], and volume fraction[xxx], on the effective material
 Finite Element (FE) method is the most commonly used technique to simulate
  nanocomposites in micro-scale.
  However due to the extreme complexity of the CNT net morphology, such as
- waviness[xxx], agglomeration[xxx] and alignment[xxx], it is almost impossible
- to create a FE model for a realistic composite.
+ waviness, agglomeration and aggreation, it is almost impossible to create
+ a FE model for a realistic composite.
  The major challenge comes from the meshing process because traditional
  FE method requires the CNT and polymer grids to be matched to each other.
  The difficulty increases significantly with the increment of CNT number
  and morphological complexity.
  Lusti and Gusev created the traditional FE model of composites with straight
- CNTs and Fig.
+ CNTs
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE04"
+literal "false"
+
+\end_inset
+
+ and Fig.
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-traditional-FE"
@@ -177,7 +391,7 @@ noprefix "false"
 
 \end_inset
 
- shows the grid[xxx].
+ shows the grid.
  It is obvious that the grid should be very difficult to be created and
  a lot of highly distorted meshes appear in Fig.
 \begin_inset CommandInset ref
@@ -200,14 +414,22 @@ noprefix "false"
 
  elements.
  Alian and Meguid also used the traditional FE model to study the mechanical-ele
-ctrical behavior of composites reinforced by straight CNTs, but due to the
- difficulties in meshing, the CNT volume fraction is only 
+ctrical behavior of composites reinforced by straight CNTs
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE05"
+literal "false"
+
+\end_inset
+
+, but due to the difficulties in meshing, the CNT volume fraction is only
+ 
 \begin_inset Formula $0.3\%$
 \end_inset
 
- in their research[xxx].
+ in their research.
  The problem can be even more severe when consider the waviness and agglomeratio
-n of the realistic composites.
+n in the realistic composites.
 \end_layout
 
 \begin_layout Standard
@@ -219,7 +441,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename standard_FE_grid.eps
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/standard_FE_grid.eps
 
 \end_inset
 
@@ -246,10 +468,6 @@ name "fig:The-traditional-FE"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -261,12 +479,44 @@ In order to avoid the complicated meshing process, many assumptions are
  The simplest way is to reduce the number of CNT and the morphological complexit
 y.
  For instance, Fisher studied the influence of the waviness by FE models
- which contain only a single nanotube[xxx] and Chen did research about the
- mechanical response of composites with regular CNT distribution[xxx].
+ which contain only a single nanotube
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE03"
+literal "false"
+
+\end_inset
+
+ and Chen did research about the mechanical response of composites with
+ regular CNT distribution
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE06"
+literal "false"
+
+\end_inset
+
+.
  The other way is to use the effective composite material properties which
- are calculated from the Mori–Tanaka model[xxx].
+ are calculated from the Mori–Tanaka model
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MT"
+literal "false"
+
+\end_inset
+
+.
  The CNT net dose not need to be meshed explicitly in this method, but the
- details of the CNT deformation are also ignored[xxx].
+ details of the CNT deformation are also ignored
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE07"
+literal "false"
+
+\end_inset
+
+.
  The 
 \begin_inset Quotes eld
 \end_inset
@@ -275,7 +525,15 @@ embedded element technique
 \begin_inset Quotes erd
 \end_inset
 
-[xxx] is also an approach to simplify the meshing process.
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE03"
+literal "false"
+
+\end_inset
+
+ is also an approach to simplify the meshing process.
  The CNTs are meshed as beam elements and their freedom degrees are embedded
  into the polymer by modifying the stiffness matrix of each polymer element.
  Only kinematic relation between CNT and polymer is considered in this method
@@ -406,7 +664,7 @@ noprefix "false"
 \end_inset
 
 (a) is an uniformly dispersed wavy CNT net with 
-\begin_inset Formula $3\%$
+\begin_inset Formula $2.5\%$
 \end_inset
 
  volume fraction.
@@ -443,7 +701,17 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/Immersed_FE.eps
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -461,10 +729,6 @@ name "fig:The-flowchart-of"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -505,11 +769,34 @@ The polymer and the CNTs are both meshed with 8 node hexahedral elements
  So the basic assumption is the polymer and CNTs are fully bonded, namely
  the displacement of the CNT surface nodes equals to the local polymer displacem
 ent.
- This assumption is widely used in continuum model[xxx] although they are
- not perfectly bonded in reality and may influence to effective material
- properties[xxx].
+ This assumption is widely used in continuum model
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE06,FE05,FE04,FE02"
+literal "false"
+
+\end_inset
+
+ although they are not perfectly bonded in reality and may influence to
+ effective material properties
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OTHER01"
+literal "false"
+
+\end_inset
+
+.
  But it is also reasonable for small deformation where the stress in CNT
- can fully transferred to the polymer[xxx].
+ can fully transferred to the polymer
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OTHER02"
+literal "false"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -1155,7 +1442,7 @@ status open
 \begin_layout Plain Layout
 \align left
 \begin_inset Graphics
-	filename CG_iteration.eps
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/CG_iteration.eps
 
 \end_inset
 
@@ -1209,6 +1496,13 @@ In this section, two numerical tests are presented at first for the validation
 
 \begin_layout Subsection
 One CNT validation
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:One-CNT-validation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1296,7 +1590,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename oneCNT_s_FE_model.eps
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/one_CNT_model.eps
 
 \end_inset
 
@@ -1361,7 +1655,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename oneCNT_s_FE_model.eps
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/oneCNT_s_FE_model.eps
 
 \end_inset
 
@@ -1458,7 +1752,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename CNT_szz_comparison.eps
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/CNT_szz_comparison.eps
 
 \end_inset
 
@@ -1554,7 +1848,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename polymer_szz_i_comparison.eps
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/polymer_szz_i_comparison.eps
 
 \end_inset
 
@@ -1598,7 +1892,7 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename polymer_szz_b_comparison.eps
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/polymer_szz_b_comparison.eps
 
 \end_inset
 
@@ -1652,7 +1946,7 @@ noprefix "false"
 
 \end_inset
 
-(a).
+.
  The standard and Immersed FE method are used to calculate the effective
  material properties.
  The size of the RVE (Representative Volume Element ) is 
@@ -1676,21 +1970,17 @@ noprefix "false"
 \end_inset
 
 , respectively.
- The grid of the standard FM method is shown in Fig.
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:The-CNT-distribution"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-(b) while in the Immersed FE method, the polymer grid is meshed as 
+ The CNT net and polymer grids are matched in traditional FE method, while
+ in the Immersed FE method, the polymer is meshed as regular grid.
+ Two sets of polymer grid, namely 
 \begin_inset Formula $100\times100\times100$
 \end_inset
 
- regular cells.
+ and 
+\begin_inset Formula $150\times150\times150$
+\end_inset
+
+, are tested to study the influence of polymer grid resolution.
  The boundary condition is 
 \begin_inset Formula $d_{x}=0$
 \end_inset
@@ -1724,11 +2014,7 @@ noprefix "false"
 \end_inset
 
 .
- Therefore, the effective 
-\begin_inset Formula $E_{11}$
-\end_inset
-
- are compared.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1738,10 +2024,20 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/11CNT_models.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The CNT distribution (a) and the standard FE grid (b) of the nanocomposite.
+The CNT distribution in the nanocomposite.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:The-CNT-distribution"
@@ -1756,21 +2052,17 @@ name "fig:The-CNT-distribution"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Firstly, the effective 
+The results of effective 
 \begin_inset Formula $\sigma_{xx}=\frac{f_{x}^{\textrm{react}}}{S}$
 \end_inset
 
- is compared, where 
+ from traditional and Immersed FE are compared, where 
 \begin_inset Formula $f_{x}^{\textrm{react}}$
 \end_inset
 
@@ -1783,49 +2075,453 @@ Firstly, the effective
 \end_inset
 
  is the face area.
- 
-\begin_inset Formula $\sigma_{xx}$
-\end_inset
-
- from the standard FE method is 0.1487GPa while the it is 0.1493Gpa from my
- the Immersed.
- The effective stress from the non-mesh-matched method is slightly higher
- than the standard FE method which may caused by the overestimation of the
- CNT deformation near the CNT endpoints 
-\end_layout
-
-\begin_layout Standard
-The displacement of each endpoint of the CNTs are also compared.
+ Moreover, the results of the each CNT endpoint displacement are also compared.
  An auxiliary variable is defined to measure the average displacement difference
  as
 \begin_inset Formula 
 \begin{equation}
-e=\frac{\sum_{i}\left|\boldsymbol{d}_{i}^{\textrm{SFE}}-\boldsymbol{d}_{i}^{\textrm{IFE}}\right|}{\sum_{i}\left|\boldsymbol{d}_{i}^{\textrm{SFE}}\right|}
+e^{\textrm{dis}}=\frac{\sum_{i}\left|\boldsymbol{d}_{i}^{\textrm{TFE}}-\boldsymbol{d}_{i}^{\textrm{IFE}}\right|}{\sum_{i}\left|\boldsymbol{d}_{i}^{\textrm{TFE}}\right|}
 \end{equation}
 
 \end_inset
 
 where 
-\begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{SFE}}$
+\begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{TFE}}$
 \end_inset
 
 and 
 \begin_inset Formula $\boldsymbol{d}_{i}^{\textrm{IFE}}$
 \end_inset
 
- are the displacement of each CNT endpoint from standard FE method and Immersed
- FE method, respectively.
- The numerical result shows that the average CNT endpoint displacement differenc
-e is about 
-\begin_inset Formula $5.66\%$
+ are the displacement of 
+\begin_inset Formula $i^{\textrm{th}}$
 \end_inset
 
-, and it indicates that the results from the Immersed FE method are very
- close to the standard FE method.
+ CNT endpoint from standard FE method and Immersed FE method, respectively.
+\end_layout
+
+\begin_layout Standard
+The comparison is shown in Tab.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:The-result-comparison"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Generally, the results of effective stress and CNT displacement from Immersed
+ FE method are very close to the traditional FE method on both polymer grid.
+ Moreover, the accuracy of the effective stress can be improved by using
+ a refined polymer grid.
+ This is because stress overestimation near CNT endpoints and underestimation
+ near the polymer-CNT interface can be eliminated when using a refined grid.
+ However, the improvement of the displacement accuracy is not significant.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The result comparison between traditional and Immersed FE method.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:The-result-comparison"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Traditional FE
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Immersed FE
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $100^{3}$
+\end_inset
+
+ elements 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $150^{3}$
+\end_inset
+
+ elements
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sigma_{xx}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1487GPa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ 0.1492Gpa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1487GPa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $e^{\textrm{dis}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.51%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.29%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 An application of the Immersed FE method
+\end_layout
+
+\begin_layout Standard
+In this numerical example, the Immersed FE method is used to study mechanic
+ properties of composites reinforced by the uniformly dispersed straight
+ CNTs with different volume fraction.
+ The CNT is selected to be Single-Walled (5,5) armchair with radius 
+\begin_inset Formula $r=0.67\textrm{nm}$
+\end_inset
+
+ and length 
+\begin_inset Formula $l=67\textrm{nm}$
+\end_inset
+
+.
+ These CNTs are uniformly and fully dispersed in a brick RVE with size 
+\begin_inset Formula $d=67\textrm{nm}$
+\end_inset
+
+.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Fully dispersed
+\begin_inset Quotes erd
+\end_inset
+
+ means that the minimal distance of any two CNTs in the net must larger
+ than 
+\begin_inset Formula $r_{\textrm{CNT_{1}}}+r_{\textrm{CNT_{2}}}+d_{\textrm{VDW}}$
+\end_inset
+
+ where 
+\begin_inset Formula $d_{\textrm{VDW}}=0.34\textrm{nm}$
+\end_inset
+
+ is the distance of Van Der Waals force
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FE05"
+literal "false"
+
+\end_inset
+
+.
+ The volume fraction 
+\begin_inset Formula $f$
+\end_inset
+
+ ranging from 
+\begin_inset Formula $0.5\%$
+\end_inset
+
+ to 
+\begin_inset Formula $3\%$
+\end_inset
+
+ with 
+\begin_inset Formula $\Delta f=0.5\%$
+\end_inset
+
+ are studied and at each fraction, 10 sets of random CNT net are created
+ by Monte Carlo method.
+ Periodic condition is applied at the RVE boundary.
+ Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-straight-CNT"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is the CNT net samples with 
+\begin_inset Formula $f=1\%,\,2\%$
+\end_inset
+
+ and 
+\begin_inset Formula $3\%$
+\end_inset
+
+.
+ The polymer is meshed into 
+\begin_inset Formula $100\times100\times100$
+\end_inset
+
+ elements in all cases.
+ The material properties are same with the parameters in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:One-CNT-validation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/Acdamic Research/My papers/Publication_UoT/paper1/straight_CNT_samples.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The straight CNT net with different volume fraction 1% (a), 2% (b) and 3%
+ (c).
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-straight-CNT"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The effective Young's modulus 
+\begin_inset Formula $E_{11}$
+\end_inset
+
+, 
+\begin_inset Formula $E_{22}$
+\end_inset
+
+ and 
+\begin_inset Formula $E_{33}$
+\end_inset
+
+ are calculate for the 
+\begin_inset Formula $60$
+\end_inset
+
+ composite samples.
+ I would like to find the relations between volume fraction and : 
+\end_layout
+
+\begin_layout Enumerate
+the average Young's modulus (to see whether the material will be more strong
+ with increasing volume fraction)
+\end_layout
+
+\begin_layout Enumerate
+the differences in 
+\begin_inset Formula $E_{11}$
+\end_inset
+
+, 
+\begin_inset Formula $E_{22}$
+\end_inset
+
+ and 
+\begin_inset Formula $E_{33}$
+\end_inset
+
+ (to see whether the material will be more isotropic with increasing volume
+ fraction)
+\end_layout
+
+\begin_layout Enumerate
+the discrepancy in Young's modulus at same volume fraction (to see whether
+ the material properties will be more stable with increasing volume fraction)
 \end_layout
 
 \begin_layout Section
@@ -1842,7 +2538,29 @@ name "sec:Conclusion-and-future"
 \begin_layout Standard
 In this study, we propose an Immersed Finite Element method to simulate
  the mechanical behavior of CNT-reinforced polymer.
- The complicated CNT 
+ The CNT and polymer grid are allowed to be created independently, so it
+ is able to easily handle the complex CNT morphology in reality.
+ Both both kinematic and mechanic relations between CNT and polymer are
+ considered by embedding the equilibrium equation of each CNT into the equilibri
+um equation of polymer.
+ Numerical examples indicate that the results of the Immersed FE method
+ is very close to the traditional FE method, so it is able to provide reliable
+ prediction of complicated problems.
+ This method is used to studies the mechanic properties of composites reinforced
+ by the uniformly dispersed straight CNTs in this paper.
+ And the numerical results demonstrate that ...
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "reference"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \end_body

@@ -56,7 +56,7 @@
 
 @Article{CNT07,
   author  = {Tans SJ and Devoret MH and Dai H and Thess A and Smalley RE and Geerligs LJ and Dekker C},
-  title   = {Individual Single-Wall Carbon Nanotubes as Quantum Wires},
+  title   = {Individual {S}ingle-{W}all {C}arbon {N}anotubes as {Q}uantum {W}ires},
   journal = {Nature},
   year    = {1997},
   volume  = {386},
@@ -65,7 +65,7 @@
 
 @Article{CNT08,
   author  = {Odom TW and Huang JL and Kim P and Lieber CM},
-  title   = {Atomic Structure and Electronic Properties of Single-Walled Carbon Nanotubes},
+  title   = {Atomic {S}tructure and {E}lectronic {P}roperties of {S}ingle-{W}alled {C}arbon {N}anotubes},
   journal = {Nature},
   year    = {1998},
   volume  = {391},
@@ -83,7 +83,7 @@
 
 @Article{SIMU02,
   author  = {Frankland SJV and Harik VM and Odegard GM and Brenner DW and Gates TS},
-  title   = {The Stress-Strain Behavior of Polymer-Nanotube Composites From Molecular Dynamics Simulation},
+  title   = {The {S}tress-{S}train {B}ehavior of {P}olymer-{N}anotube {C}omposites {F}rom {M}olecular {D}ynamics {S}imulation},
   journal = {Composites Science and Technology},
   year    = {2003},
   volume  = {63},
@@ -92,7 +92,7 @@
 
 @Article{SIMU03,
   author  = {Griebel M and Hamaekers J},
-  title   = {Molecular Dynamics Simulations of the Elastic Moduli of Polymer-Carbon Nanotube Composites},
+  title   = {{M}olecular {D}ynamics {S}imulations of the {E}lastic {M}oduli of {P}olymer-{C}arbon {N}anotube {C}omposites},
   journal = {Computer Methods in Applied Mechanics and Engineering},
   year    = {2004},
   volume  = {193},
@@ -101,7 +101,7 @@
 
 @Article{EXP01,
   author  = {Liu TX and Phang IY and Shen L and Chow SY and Zhang WD},
-  title   = {Morphology and Mechanical Properties of Multiwalled Carbon Nanotubes Reinforced Nylon-6 Composites},
+  title   = {{M}orphology and {M}echanical {P}roperties of {M}ultiwalled {C}arbon {N}anotubes {R}einforced {N}ylon-6 {C}omposites},
   journal = {Macromolecules},
   year    = {2004},
   volume  = {37},
@@ -110,7 +110,7 @@
 
 @Article{EXP02,
   author  = {Lachman N and Wagner HD},
-  title   = {Correlation Between Interfacial Molecular Structure and Mechanics in CNT/Epoxy Nano-Composites},
+  title   = {Correlation {B}etween {I}nterfacial {M}olecular {S}tructure and {M}echanics in {CNT}/{E}poxy {N}ano-{C}omposites},
   journal = {Composites, Part A},
   year    = {2009},
   volume  = {41},
@@ -119,7 +119,7 @@
 
 @Article{EXP03,
   author  = {Ganguli S and Bhuyan M and Allie L and Aglan H},
-  title   = {Effect of a Multi-Walled Carbon Nanotube Reinforcement on the Fracture Behaviour of a Tetrafunctional Epoxy},
+  title   = {Effect of a {M}ulti-{W}alled {C}arbon {N}anotube {R}einforcement on the {F}racture {B}ehaviour of a {T}etrafunctional {E}poxy},
   journal = {Journal of Materials Science},
   year    = {2005},
   volume  = {40},
@@ -128,7 +128,7 @@
 
 @Article{ANAL01,
   author  = {Shao LH and Luo RY and Bai SL and Wang J},
-  title   = {Prediction of effective moduli of carbon nanotube–reinforced composites with waviness and debonding},
+  title   = {Prediction of effective moduli of carbon nanotube-reinforced composites with waviness and debonding},
   journal = {Composite Structures},
   year    = {2009},
   volume  = {87},
@@ -173,7 +173,7 @@
 
 @Article{MD02,
   author  = {Xiao T and Liao K},
-  title   = {A Nonlinear Pullout Model for Unidirectional Carbon Nanotube-Reinforced Composites},
+  title   = {A {N}onlinear {P}ullout {M}odel for {U}nidirectional {C}arbon {N}anotube-{R}einforced {C}omposites},
   journal = {Composites, Part B},
   year    = {2004},
   volume  = {35},
@@ -182,7 +182,7 @@
 
 @Article{MD03,
   author  = {Chen H and Xue Q and Zheng Q and Xie J and Yan K},
-  title   = {Influence of Nanotube Chirality, Temperature, and Chemical Modification on the Interfacial Bonding Between Carbon Nanotubes and Polyphenylacetylene},
+  title   = {Influence of {N}anotube {C}hirality, {T}emperature, and {C}hemical {M}odification on the {I}nterfacial {B}onding {B}etween {C}arbon {N}anotubes and {P}olyphenylacetylene},
   journal = {The Journal of Physical Chemistry C},
   year    = {2008},
   volume  = {112},
@@ -191,7 +191,7 @@
 
 @Article{MD04,
   author  = {Lordi V and Yao N},
-  title   = {Molecular Mechanics of Binding in Carbon-Nanotube-Polymer Composites},
+  title   = {Molecular {M}echanics of {B}inding in {C}arbon-{N}anotube-{P}olymer {C}omposites},
   journal = {Journal of Materials Research},
   year    = {2000},
   volume  = {15},
@@ -200,7 +200,7 @@
 
 @Article{MD05,
   author  = {Frankland SJV and Caglar A and Brenner DW and Griebel M},
-  title   = {Molecular Simulation of the Influence of Chemical Cross-Links on the Shear Strength of Carbon Nanotube-Polymer Interfaces},
+  title   = {Molecular {S}imulation of the {I}nfluence of {C}hemical {C}ross-{L}inks on the {S}hear {S}trength of {C}arbon {N}anotube-{P}olymer {I}nterfaces},
   journal = {The Journal of Physical Chemistry B},
   year    = {2002},
   volume  = {106},
@@ -209,7 +209,7 @@
 
 @Article{MD06,
   author  = {Shi DL and Feng XQ and Jiang H and Huang YY and Hwang KC},
-  title   = {Multiscale Analysis of Fracture of Carbon Nanotubes Embedded in Composites},
+  title   = {Multiscale {A}nalysis of {F}racture of {C}arbon {N}anotubes {E}mbedded in {C}omposites},
   journal = {International Journal of Fracture},
   year    = {2005},
   volume  = {134},
@@ -227,7 +227,7 @@
 
 @Article{MD08,
   author  = {Farid F and Abraham and Robert W and Gao HJ and Duchaineau M and Tomas D and Seager M},
-  title   = {Simulating materials failure by using up to one billion atoms and the world’s fastest computer: Work-hardening},
+  title   = {Simulating materials failure by using up to one billion atoms and the world's fastest computer: Work-hardening},
   journal = {Proceedings of the National Academy of Sciences},
   year    = {2002},
   volume  = {99},
@@ -245,7 +245,7 @@
 
 @Article{FE02,
   author  = {Fisher FT amd Bradshaw RD and Brinson LC},
-  title   = {Effects of Nanotube Waviness on the Modulus of Nanotube-Reinforced Polymers},
+  title   = {Effects of {N}anotube {W}aviness on the {M}odulus of {N}anotube-{R}einforced {P}olymers},
   journal = {Applied Physics Letters},
   year    = {2002},
   volume  = {80},
@@ -281,7 +281,7 @@
 
 @Article{FE06,
   author  = {Chen XL and Liu YJ},
-  title   = {Square Representative Volume Elements for Evaluating the Effective Material Properties of Carbon Nanotube-Based Composites},
+  title   = {Square {R}epresentative {V}olume {E}lements for {E}valuating the {E}ffective {M}aterial {P}roperties of {C}arbon {N}anotube-{B}ased {C}omposites},
   journal = {Computational Materials Science},
   year    = {2004},
   volume  = {29},
@@ -299,7 +299,7 @@
 
 @Article{MT,
   author  = {Mori T and Tanaka K},
-  title   = {Average Stress in Matrix and Average Elastic Energy of Materials With Misfitting Inclusions},
+  title   = {Average {S}tress in {M}atrix and {A}verage {E}lastic {E}nergy of {M}aterials {W}ith {M}isfitting {I}nclusions},
   journal = {Acta Metallurgica},
   year    = {1973},
   volume  = {21},
@@ -316,7 +316,7 @@
 }
 
 @Book{OTHER02,
-  title     = {Microstructural Design of Fiber Composites},
+  title     = {Microstructural {D}esign of {F}iber {C}omposites},
   publisher = {Cambridge University Press},
   year      = {1992},
   author    = {Chou TW},
